@@ -308,10 +308,12 @@
       <button class="mc-button modal-btn" id="closeShopBtn">CERRAR</button>
     </div>
   </div>
-  <!-- Cliente de Socket.IO servido por el servidor Node (server.js). Si ese
-       servidor no está corriendo, esta etiqueta falla en silencio y el modo
-       online queda deshabilitado, pero el resto del juego sigue funcionando. -->
-  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
-  <script src="script.js?v=3"></script>
+  <!-- Cliente de Socket.IO desde CDN (no depende de dónde esté desplegado
+       server.js). Si el servidor Node configurado en env-config.js no está
+       accesible, la conexión falla en silencio y el modo online queda
+       deshabilitado, pero el resto del juego sigue funcionando. -->
+  <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4/dist/socket.io.min.js"></script>
+  <script src="env-config.js?v=1"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>

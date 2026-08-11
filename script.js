@@ -1,6 +1,7 @@
 // Minecraft TNT Duels 1v1
-// Ruta relativa a la carpeta api/ (ver README para cómo servir el juego junto a la API PHP)
-const API_BASE_URL = 'api';
+// En local apunta a la API PHP y al servidor Node locales; en producción,
+// a las URLs del backend desplegado (ver env-config.js).
+const API_BASE_URL = window.TNT_CONFIG.API_BASE_URL;
 const DEFAULT_AVATAR = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" fill="#444"/><circle cx="20" cy="15" r="8" fill="#999"/><rect x="6" y="26" width="28" height="12" rx="6" fill="#999"/></svg>'
 );
@@ -1005,7 +1006,7 @@ async function equipCosmetic(keyName) {
 // muta gameState directamente en modo online; solo emite la intención
 // (colocar/cavar/finalizar) y espera a que llegue el siguiente 'state'.
 
-const SOCKET_URL = 'http://localhost:3000';
+const SOCKET_URL = window.TNT_CONFIG.SOCKET_URL;
 let onlineSocket = null;
 let onlineMatchSaved = false;
 
