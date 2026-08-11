@@ -1,0 +1,13 @@
+# Dependencias
+node_modules/
+
+# Configuración local con credenciales (usa api/config.example.php como plantilla)
+api/config.php
+
+# Archivos subidos por usuarios (avatares)
+api/uploads/avatars/*
+!api/uploads/avatars/.htaccess
+
+# Logs / temporales
+*.log
+npm-debug.log*

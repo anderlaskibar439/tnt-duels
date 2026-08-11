@@ -1,0 +1,991 @@
+/* Minecraft TNT Duels Stylesheet */
+:root {
+  /* Colors */
+  --mc-gray: #c6c6c6;
+  --mc-dark-gray: #4a4a4a;
+  --mc-shadow-dark: #555555;
+  --mc-highlight-light: #ffffff;
+  --text-white: #ffffff;
+  --text-yellow: #ffff55;
+  --text-red: #ff5555;
+  --text-blue: #5555ff;
+  /* Marco de madera pixel-art (9-slice), extraído de los colores de Menu_Botones.png */
+  --wood-frame: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAA3klEQVR4AcXBIY6DQBSA4Z+XOQIej0YiMTTB4Ct6gOqmJ2iqOcAK/BgSxiBHcgxMT8FiNqmirxuS931JnqUrBhybti7Z40Pkeb+gcXv80NYle3yIOJSW5cWRBCOCEYfSMM0cyaHUVAUaXT+iIRgRjDg2PkSO5EPkE8fmeb+wLC/+DNNMUxX8x/V84t0wzTRVwbuuHxGMCEYEI4IRwYhgRDAiGBGMJHmWrihczyc0un5Ew7Fp65I9PkS+0dYle3yICEYEIw6lYZo5kkOpqQo0un5EQzAiGBGMJHmWrhj4BXgHNE9cKsPUAAAAAElFTkSuQmCC");
+
+  /* Textures (URL-encoded SVGs) */
+  --grass-tile: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'%3E%3Crect x='0' y='0' width='1' height='1' fill='%234d6731'/%3E%3Crect x='1' y='0' width='1' height='1' fill='%23435828'/%3E%3Crect x='2' y='0' width='1' height='1' fill='%234d6630'/%3E%3Crect x='3' y='0' width='1' height='1' fill='%234d622f'/%3E%3Crect x='4' y='0' width='1' height='1' fill='%234f6832'/%3E%3Crect x='5' y='0' width='1' height='1' fill='%236d8e43'/%3E%3Crect x='6' y='0' width='1' height='1' fill='%23526b33'/%3E%3Crect x='7' y='0' width='1' height='1' fill='%235d7a38'/%3E%3Crect x='8' y='0' width='1' height='1' fill='%235f7c3b'/%3E%3Crect x='9' y='0' width='1' height='1' fill='%23475d2b'/%3E%3Crect x='10' y='0' width='1' height='1' fill='%23495f2e'/%3E%3Crect x='11' y='0' width='1' height='1' fill='%23567035'/%3E%3Crect x='12' y='0' width='1' height='1' fill='%23485e2c'/%3E%3Crect x='13' y='0' width='1' height='1' fill='%23576f35'/%3E%3Crect x='14' y='0' width='1' height='1' fill='%23566f34'/%3E%3Crect x='15' y='0' width='1' height='1' fill='%235b7537'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%234a6330'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%235a7437'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%234f6832'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%233f5027'/%3E%3Crect x='4' y='1' width='1' height='1' fill='%235d793a'/%3E%3Crect x='5' y='1' width='1' height='1' fill='%234d632e'/%3E%3Crect x='6' y='1' width='1' height='1' fill='%234c622f'/%3E%3Crect x='7' y='1' width='1' height='1' fill='%234e642f'/%3E%3Crect x='8' y='1' width='1' height='1' fill='%23536e32'/%3E%3Crect x='9' y='1' width='1' height='1' fill='%23597336'/%3E%3Crect x='10' y='1' width='1' height='1' fill='%234f6832'/%3E%3Crect x='11' y='1' width='1' height='1' fill='%23475d2c'/%3E%3Crect x='12' y='1' width='1' height='1' fill='%234f6830'/%3E%3Crect x='13' y='1' width='1' height='1' fill='%234b612e'/%3E%3Crect x='14' y='1' width='1' height='1' fill='%234b612e'/%3E%3Crect x='15' y='1' width='1' height='1' fill='%23526b33'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23425828'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%235a7437'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23526b32'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%236d8e43'/%3E%3Crect x='4' y='2' width='1' height='1' fill='%23526b32'/%3E%3Crect x='5' y='2' width='1' height='1' fill='%234a612e'/%3E%3Crect x='6' y='2' width='1' height='1' fill='%234b612e'/%3E%3Crect x='7' y='2' width='1' height='1' fill='%234f6830'/%3E%3Crect x='8' y='2' width='1' height='1' fill='%23485d2c'/%3E%3Crect x='9' y='2' width='1' height='1' fill='%234e6732'/%3E%3Crect x='10' y='2' width='1' height='1' fill='%23597336'/%3E%3Crect x='11' y='2' width='1' height='1' fill='%23546e33'/%3E%3Crect x='12' y='2' width='1' height='1' fill='%234e652e'/%3E%3Crect x='13' y='2' width='1' height='1' fill='%234c622f'/%3E%3Crect x='14' y='2' width='1' height='1' fill='%234d642e'/%3E%3Crect x='15' y='2' width='1' height='1' fill='%235d793a'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%234d662f'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%234b6430'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23536d32'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%234f6832'/%3E%3Crect x='4' y='3' width='1' height='1' fill='%235b7538'/%3E%3Crect x='5' y='3' width='1' height='1' fill='%23556e34'/%3E%3Crect x='6' y='3' width='1' height='1' fill='%23587035'/%3E%3Crect x='7' y='3' width='1' height='1' fill='%23485e2c'/%3E%3Crect x='8' y='3' width='1' height='1' fill='%23567036'/%3E%3Crect x='9' y='3' width='1' height='1' fill='%23495f2e'/%3E%3Crect x='10' y='3' width='1' height='1' fill='%23475d2b'/%3E%3Crect x='11' y='3' width='1' height='1' fill='%235f7c39'/%3E%3Crect x='12' y='3' width='1' height='1' fill='%235d7a38'/%3E%3Crect x='13' y='3' width='1' height='1' fill='%23526b33'/%3E%3Crect x='14' y='3' width='1' height='1' fill='%236d8e43'/%3E%3Crect x='15' y='3' width='1' height='1' fill='%234f6832'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%23577335'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%23526833'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%235c7737'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%234f6831'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%23465c2a'/%3E%3Crect x='5' y='4' width='1' height='1' fill='%234a602c'/%3E%3Crect x='6' y='4' width='1' height='1' fill='%234d632f'/%3E%3Crect x='7' y='4' width='1' height='1' fill='%234b6430'/%3E%3Crect x='8' y='4' width='1' height='1' fill='%23516832'/%3E%3Crect x='9' y='4' width='1' height='1' fill='%23516834'/%3E%3Crect x='10' y='4' width='1' height='1' fill='%23526b33'/%3E%3Crect x='11' y='4' width='1' height='1' fill='%23587436'/%3E%3Crect x='12' y='4' width='1' height='1' fill='%235e7b39'/%3E%3Crect x='13' y='4' width='1' height='1' fill='%235f7e3c'/%3E%3Crect x='14' y='4' width='1' height='1' fill='%234c612f'/%3E%3Crect x='15' y='4' width='1' height='1' fill='%2343562a'/%3E%3Crect x='0' y='5' width='1' height='1' fill='%235f7c39'/%3E%3Crect x='1' y='5' width='1' height='1' fill='%234a602d'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%2342542a'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%234b612e'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%234e642f'/%3E%3Crect x='5' y='5' width='1' height='1' fill='%23556f34'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23506931'/%3E%3Crect x='7' y='5' width='1' height='1' fill='%23566f36'/%3E%3Crect x='8' y='5' width='1' height='1' fill='%23475b2b'/%3E%3Crect x='9' y='5' width='1' height='1' fill='%23516a31'/%3E%3Crect x='10' y='5' width='1' height='1' fill='%23475d2b'/%3E%3Crect x='11' y='5' width='1' height='1' fill='%234b612e'/%3E%3Crect x='12' y='5' width='1' height='1' fill='%234e6832'/%3E%3Crect x='13' y='5' width='1' height='1' fill='%23556f35'/%3E%3Crect x='14' y='5' width='1' height='1' fill='%234f6830'/%3E%3Crect x='15' y='5' width='1' height='1' fill='%234d6630'/%3E%3Crect x='0' y='6' width='1' height='1' fill='%234c622f'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%235f7b3a'/%3E%3Crect x='2' y='6' width='1' height='1' fill='%235a7637'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%234a602d'/%3E%3Crect x='4' y='6' width='1' height='1' fill='%23607e3d'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%234a612e'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23617e3c'/%3E%3Crect x='7' y='6' width='1' height='1' fill='%23627e3b'/%3E%3Crect x='8' y='6' width='1' height='1' fill='%234b642f'/%3E%3Crect x='9' y='6' width='1' height='1' fill='%23617e3c'/%3E%3Crect x='10' y='6' width='1' height='1' fill='%2367873f'/%3E%3Crect x='11' y='6' width='1' height='1' fill='%23425526'/%3E%3Crect x='12' y='6' width='1' height='1' fill='%23485e2c'/%3E%3Crect x='13' y='6' width='1' height='1' fill='%235d793a'/%3E%3Crect x='14' y='6' width='1' height='1' fill='%23607d3c'/%3E%3Crect x='15' y='6' width='1' height='1' fill='%23465c2a'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%23556c32'/%3E%3Crect x='1' y='7' width='1' height='1' fill='%23455a2b'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%23567035'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%23566e34'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23425728'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%235d7a38'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23485e2c'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%23546e33'/%3E%3Crect x='8' y='7' width='1' height='1' fill='%23536d32'/%3E%3Crect x='9' y='7' width='1' height='1' fill='%23567033'/%3E%3Crect x='10' y='7' width='1' height='1' fill='%234c622f'/%3E%3Crect x='11' y='7' width='1' height='1' fill='%23536d32'/%3E%3Crect x='12' y='7' width='1' height='1' fill='%234b6430'/%3E%3Crect x='13' y='7' width='1' height='1' fill='%234a602d'/%3E%3Crect x='14' y='7' width='1' height='1' fill='%23425728'/%3E%3Crect x='15' y='7' width='1' height='1' fill='%234c622f'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%23546c32'/%3E%3Crect x='1' y='8' width='1' height='1' fill='%236b8b42'/%3E%3Crect x='2' y='8' width='1' height='1' fill='%23465b2b'/%3E%3Crect x='3' y='8' width='1' height='1' fill='%23577136'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%235d793a'/%3E%3Crect x='5' y='8' width='1' height='1' fill='%23516933'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%23516a31'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%234b612e'/%3E%3Crect x='8' y='8' width='1' height='1' fill='%234e652e'/%3E%3Crect x='9' y='8' width='1' height='1' fill='%23475d2b'/%3E%3Crect x='10' y='8' width='1' height='1' fill='%234a602d'/%3E%3Crect x='11' y='8' width='1' height='1' fill='%234c622f'/%3E%3Crect x='12' y='8' width='1' height='1' fill='%2366833d'/%3E%3Crect x='13' y='8' width='1' height='1' fill='%23617e3a'/%3E%3Crect x='14' y='8' width='1' height='1' fill='%23506932'/%3E%3Crect x='15' y='8' width='1' height='1' fill='%235d7a38'/%3E%3Crect x='0' y='9' width='1' height='1' fill='%23465b2a'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%23516732'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%234e682f'/%3E%3Crect x='3' y='9' width='1' height='1' fill='%234c622f'/%3E%3Crect x='4' y='9' width='1' height='1' fill='%23567234'/%3E%3Crect x='5' y='9' width='1' height='1' fill='%234f6531'/%3E%3Crect x='6' y='9' width='1' height='1' fill='%23506832'/%3E%3Crect x='7' y='9' width='1' height='1' fill='%23455a2b'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%235b7738'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%234a602c'/%3E%3Crect x='10' y='9' width='1' height='1' fill='%23566e34'/%3E%3Crect x='11' y='9' width='1' height='1' fill='%235f7e3c'/%3E%3Crect x='12' y='9' width='1' height='1' fill='%234c622d'/%3E%3Crect x='13' y='9' width='1' height='1' fill='%23485e2c'/%3E%3Crect x='14' y='9' width='1' height='1' fill='%234f6932'/%3E%3Crect x='15' y='9' width='1' height='1' fill='%235b7438'/%3E%3Crect x='0' y='10' width='1' height='1' fill='%23526b33'/%3E%3Crect x='1' y='10' width='1' height='1' fill='%23526b33'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%235d7939'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%23577034'/%3E%3Crect x='4' y='10' width='1' height='1' fill='%2366863f'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%23607d3b'/%3E%3Crect x='6' y='10' width='1' height='1' fill='%23617e3a'/%3E%3Crect x='7' y='10' width='1' height='1' fill='%23485e2c'/%3E%3Crect x='8' y='10' width='1' height='1' fill='%235f7f3d'/%3E%3Crect x='9' y='10' width='1' height='1' fill='%23577134'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%23668140'/%3E%3Crect x='11' y='10' width='1' height='1' fill='%23607c3b'/%3E%3Crect x='12' y='10' width='1' height='1' fill='%23495f2d'/%3E%3Crect x='13' y='10' width='1' height='1' fill='%23516a32'/%3E%3Crect x='14' y='10' width='1' height='1' fill='%234c612f'/%3E%3Crect x='15' y='10' width='1' height='1' fill='%23516a32'/%3E%3Crect x='0' y='11' width='1' height='1' fill='%23526b33'/%3E%3Crect x='1' y='11' width='1' height='1' fill='%23526b33'/%3E%3Crect x='2' y='11' width='1' height='1' fill='%23556f34'/%3E%3Crect x='3' y='11' width='1' height='1' fill='%23495f2e'/%3E%3Crect x='4' y='11' width='1' height='1' fill='%2366863f'/%3E%3Crect x='5' y='11' width='1' height='1' fill='%234e6731'/%3E%3Crect x='6' y='11' width='1' height='1' fill='%234e6832'/%3E%3Crect x='7' y='11' width='1' height='1' fill='%23556f34'/%3E%3Crect x='8' y='11' width='1' height='1' fill='%23607d3b'/%3E%3Crect x='9' y='11' width='1' height='1' fill='%23485e2c'/%3E%3Crect x='10' y='11' width='1' height='1' fill='%234c622e'/%3E%3Crect x='11' y='11' width='1' height='1' fill='%23506a32'/%3E%3Crect x='12' y='11' width='1' height='1' fill='%23526a32'/%3E%3Crect x='13' y='11' width='1' height='1' fill='%235e7b39'/%3E%3Crect x='14' y='11' width='1' height='1' fill='%234f6831'/%3E%3Crect x='15' y='11' width='1' height='1' fill='%2364813d'/%3E%3Crect x='0' y='12' width='1' height='1' fill='%23607d3b'/%3E%3Crect x='1' y='12' width='1' height='1' fill='%23576e34'/%3E%3Crect x='2' y='12' width='1' height='1' fill='%23567033'/%3E%3Crect x='3' y='12' width='1' height='1' fill='%23597336'/%3E%3Crect x='4' y='12' width='1' height='1' fill='%23576e34'/%3E%3Crect x='5' y='12' width='1' height='1' fill='%235c7838'/%3E%3Crect x='6' y='12' width='1' height='1' fill='%23495f2e'/%3E%3Crect x='7' y='12' width='1' height='1' fill='%2366863e'/%3E%3Crect x='8' y='12' width='1' height='1' fill='%234f6832'/%3E%3Crect x='9' y='12' width='1' height='1' fill='%23536a33'/%3E%3Crect x='10' y='12' width='1' height='1' fill='%236b8b43'/%3E%3Crect x='11' y='12' width='1' height='1' fill='%23445829'/%3E%3Crect x='12' y='12' width='1' height='1' fill='%235d7a38'/%3E%3Crect x='13' y='12' width='1' height='1' fill='%23495f2c'/%3E%3Crect x='14' y='12' width='1' height='1' fill='%234f6831'/%3E%3Crect x='15' y='12' width='1' height='1' fill='%234c622f'/%3E%3Crect x='0' y='13' width='1' height='1' fill='%2366823f'/%3E%3Crect x='1' y='13' width='1' height='1' fill='%235b7738'/%3E%3Crect x='2' y='13' width='1' height='1' fill='%234a602d'/%3E%3Crect x='3' y='13' width='1' height='1' fill='%235f7e3b'/%3E%3Crect x='4' y='13' width='1' height='1' fill='%234b612e'/%3E%3Crect x='5' y='13' width='1' height='1' fill='%235b7737'/%3E%3Crect x='6' y='13' width='1' height='1' fill='%23566e34'/%3E%3Crect x='7' y='13' width='1' height='1' fill='%234a602d'/%3E%3Crect x='8' y='13' width='1' height='1' fill='%23516b32'/%3E%3Crect x='9' y='13' width='1' height='1' fill='%234d6330'/%3E%3Crect x='10' y='13' width='1' height='1' fill='%23546e33'/%3E%3Crect x='11' y='13' width='1' height='1' fill='%23516a32'/%3E%3Crect x='12' y='13' width='1' height='1' fill='%234f6530'/%3E%3Crect x='13' y='13' width='1' height='1' fill='%2344592a'/%3E%3Crect x='14' y='13' width='1' height='1' fill='%2364813d'/%3E%3Crect x='15' y='13' width='1' height='1' fill='%23465c2a'/%3E%3Crect x='0' y='14' width='1' height='1' fill='%2344592c'/%3E%3Crect x='1' y='14' width='1' height='1' fill='%234d632f'/%3E%3Crect x='2' y='14' width='1' height='1' fill='%2366883e'/%3E%3Crect x='3' y='14' width='1' height='1' fill='%23556f34'/%3E%3Crect x='4' y='14' width='1' height='1' fill='%23485e2c'/%3E%3Crect x='5' y='14' width='1' height='1' fill='%234e642f'/%3E%3Crect x='6' y='14' width='1' height='1' fill='%23567034'/%3E%3Crect x='7' y='14' width='1' height='1' fill='%23506931'/%3E%3Crect x='8' y='14' width='1' height='1' fill='%234b612e'/%3E%3Crect x='9' y='14' width='1' height='1' fill='%23435829'/%3E%3Crect x='10' y='14' width='1' height='1' fill='%234d6530'/%3E%3Crect x='11' y='14' width='1' height='1' fill='%23506931'/%3E%3Crect x='12' y='14' width='1' height='1' fill='%234d652f'/%3E%3Crect x='13' y='14' width='1' height='1' fill='%23455a2b'/%3E%3Crect x='14' y='14' width='1' height='1' fill='%23597336'/%3E%3Crect x='15' y='14' width='1' height='1' fill='%235b7738'/%3E%3Crect x='0' y='15' width='1' height='1' fill='%236c8c44'/%3E%3Crect x='1' y='15' width='1' height='1' fill='%234b6430'/%3E%3Crect x='2' y='15' width='1' height='1' fill='%23495e2d'/%3E%3Crect x='3' y='15' width='1' height='1' fill='%235e7b39'/%3E%3Crect x='4' y='15' width='1' height='1' fill='%23425529'/%3E%3Crect x='5' y='15' width='1' height='1' fill='%23516a32'/%3E%3Crect x='6' y='15' width='1' height='1' fill='%23455a2b'/%3E%3Crect x='7' y='15' width='1' height='1' fill='%23576f34'/%3E%3Crect x='8' y='15' width='1' height='1' fill='%23475e2d'/%3E%3Crect x='9' y='15' width='1' height='1' fill='%236d8e43'/%3E%3Crect x='10' y='15' width='1' height='1' fill='%235b7538'/%3E%3Crect x='11' y='15' width='1' height='1' fill='%23516a32'/%3E%3Crect x='12' y='15' width='1' height='1' fill='%235d7a38'/%3E%3Crect x='13' y='15' width='1' height='1' fill='%23577134'/%3E%3Crect x='14' y='15' width='1' height='1' fill='%23597337'/%3E%3Crect x='15' y='15' width='1' height='1' fill='%234c622d'/%3E%3C/svg%3E");
+  --tnt-tile: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACJklEQVR4AaXBPWsUQRjA8f/zzGxyl2NjTk3gCruAjSS+fAA7DaiV4BuIWChBrRKwEAuxsFRBxEDaCIJgY+fXCAQrtROLgHe7Ozs7OzvrdzC/n/w+dawfLibcVNkvDWt5x3Ax4abKfmlYyzuGiwk3VfZLw1reMVxMuKmyXxo0eCG1QqiFwiaCF1IrhFoobCJ4IbVCqIXCJoIXUiuEWihsQjki5YjUtYqvhCoaXBZxreIroYoGl0Vcq/hKqKLBZRHXKr4SqmhwWcROfv2gqkpOiLChSpcSqe9ZNoYNoEuJ1PcsAZdEURW6lFhW5XqeY40qmTG8ffuRz5+/4VzB1tY93r37xPv3zzl77jTr69fY3LzL3t5XvHdsb9/nzp2rpJSws79/QYXHT27SRs/Kyglu3b7Czs4XHjx8xu7uK8ZLKzx5fAvpYXnlODduXEZVUFXsKM+pa0dKPb7xWDsHCE1Ts/PhBY8evaQsptRNwPmK2g9pQkAEmrpGjTHQ9/R9Ys7OE0JDZg3OFZy/cIY3r5/S05NZA70QY8twMM9clrF0chn5+f1738WW/2GzOeyfCxcZ2Y42wkHuWS1GjGxHG+Eg96wWI0a2o41wkHtWixEj29FGOMg9drLQkI8Ts0NlEC2ThYZ8nJgdKoNomSw05OPE7FAZRMtkoSEfJ2aHyiBalCNSjkhdULwTymiobcQFxTuhjIbaRlxQvBPKaKhtxAXFO6GMhtpG/gH11BrF/z5q+QAAAABJRU5ErkJggg==");
+  --crater-tile: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAArElEQVR4AaSRTQqDMBCFH9IiCoWuuu0teohuuugVeqxeoYtueoheR1BEQfMWE8yYH4PCR5yZl89IiuvlPO2hwM7HCpquRw7yXSuQRmq9P54gklsJun5AjN/3AxIUcNDeRhC+p1idILVBz72C+n8A0WFf7RXoYPsyv2TQfdabBPXbnMjADRpHsLweHQzVjiAUivUdAe+3Ko+IoWWOQA+31FZwqkrkIHIrkEbuOgMAAP//BlYozwAAAAZJREFUAwA5EWVhBJrbLgAAAABJRU5ErkJggg==");
+  --dirt-tile: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABj0lEQVR4AWzTwSqEYRQG4K+/LNFkMUlKbCwnbJTJxoaFnYVSbsANuAC3YO8WbFjYaLZoVnYmJU2TmFDKxug5nD8L6vWd8573e8853091frQ3Oj7YChzurI7gP253bTFqWc+zuuzeFT+dbs8R6PVfyutMuyS33loo7dZ81MTq9/1hOTm7KhXiYTAsc9ONgsz87eY0OLkmNBxcYry/uRL1itt7c7kQMpEzIsbJZ5sNaXHSuIxHVn6ND64LwgXu7d9xdVbHOW/Lzxq0yVVGy44KOhDjgDC55+6FUnEHp2G8gQQJE0vbtcCo4BZxxlbBaVh/BQKYfOzErgRWIDKJE/AapUmVQYoVicBFeb6JGA9Wk8cbMElxFuVWkxOC2JSg5l58BQWEAojtS8AIB2JrQL5VrJDuCkBsJcZTrY34xHjGRsf7Q2MYKwh0+2vERO5vxAkuMhGrmzJW8EhIgt7TZ3xGHZniNHDBKRerQ72CosLY10f8TzA0Lk4nK2nEQOyEmEBAxFFXY3okJw5omKqDWINvAAAA///Bb9FRAAAABklEQVQDAIJnY0n9egkrAAAAAElFTkSuQmCC");
+  --heart-full: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9' width='9' height='9'%3E%3Crect x='1' y='0' width='2' height='1' fill='%23000'/%3E%3Crect x='6' y='0' width='2' height='1' fill='%23000'/%3E%3Crect x='0' y='1' width='1' height='3' fill='%23000'/%3E%3Crect x='8' y='1' width='1' height='3' fill='%23000'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='5' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%23000'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23000'/%3E%3C!-- Red Fill --%3E%3Crect x='1' y='1' width='2' height='3' fill='%23ff2222'/%3E%3Crect x='6' y='1' width='2' height='3' fill='%23ff2222'/%3E%3Crect x='3' y='2' width='2' height='4' fill='%23ff2222'/%3E%3Crect x='2' y='4' width='5' height='1' fill='%23ff2222'/%3E%3Crect x='2' y='2' width='1' height='2' fill='%23ff2222'/%3E%3Crect x='5' y='2' width='1' height='4' fill='%23ff2222'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23ffffff'/%3E%3C/svg%3E");
+  --heart-empty: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9' width='9' height='9'%3E%3Crect x='1' y='0' width='2' height='1' fill='%23000'/%3E%3Crect x='6' y='0' width='2' height='1' fill='%23000'/%3E%3Crect x='0' y='1' width='1' height='3' fill='%23000'/%3E%3Crect x='8' y='1' width='1' height='3' fill='%23000'/%3E%3Crect x='3' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='5' y='1' width='1' height='1' fill='%23000'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='7' y='4' width='1' height='1' fill='%23000'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23000'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%23000'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23000'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23000'/%3E%3C!-- Dark Gray Fill --%3E%3Crect x='1' y='1' width='2' height='3' fill='%233c3c3c'/%3E%3Crect x='6' y='1' width='2' height='3' fill='%233c3c3c'/%3E%3Crect x='3' y='2' width='2' height='4' fill='%233c3c3c'/%3E%3Crect x='2' y='4' width='5' height='1' fill='%233c3c3c'/%3E%3Crect x='2' y='2' width='1' height='2' fill='%233c3c3c'/%3E%3Crect x='5' y='2' width='1' height='4' fill='%233c3c3c'/%3E%3C/svg%3E");
+  /* Silueta completa del corazón (contorno + relleno unidos) usada como máscara
+     para poder recolorear el relleno con background-color en los cosméticos de tienda. */
+  --heart-mask: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9' width='9' height='9'%3E%3Crect x='1' y='0' width='2' height='1' fill='%23fff'/%3E%3Crect x='6' y='0' width='2' height='1' fill='%23fff'/%3E%3Crect x='0' y='1' width='1' height='3' fill='%23fff'/%3E%3Crect x='8' y='1' width='1' height='3' fill='%23fff'/%3E%3Crect x='1' y='1' width='2' height='3' fill='%23fff'/%3E%3Crect x='6' y='1' width='2' height='3' fill='%23fff'/%3E%3Crect x='3' y='2' width='2' height='4' fill='%23fff'/%3E%3Crect x='2' y='2' width='1' height='2' fill='%23fff'/%3E%3Crect x='5' y='1' width='1' height='5' fill='%23fff'/%3E%3Crect x='2' y='4' width='5' height='1' fill='%23fff'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%23fff'/%3E%3Crect x='7' y='4' width='1' height='1' fill='%23fff'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%23fff'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23fff'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%23fff'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23fff'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23fff'/%3E%3C/svg%3E");
+}
+/* General Setup */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+body {
+  font-family: 'VT323', monospace;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-white);
+  background-color: #3b5c20;
+}
+/* Background field (Full viewport) */
+.grass-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("FondoCesped.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+/* Columna central: título, banner de estado, fila jugadores+tablero, controles */
+.game-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 760px;
+  max-width: 95%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ============ Marco de madera reutilizable (estilo Menu_Botones.png) ============ */
+.wood-panel {
+  position: relative;
+  border-style: solid;
+  border-width: 10px;
+  border-image-source: var(--wood-frame);
+  border-image-slice: 10;
+  border-image-width: 10px;
+  border-image-repeat: round;
+  image-rendering: pixelated;
+  background-color: rgba(28, 20, 14, 0.86);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+}
+.wood-panel-title {
+  border-style: solid;
+  border-width: 10px;
+  border-image-source: var(--wood-frame);
+  border-image-slice: 10;
+  border-image-width: 10px;
+  border-image-repeat: round;
+  image-rendering: pixelated;
+  background-color: rgba(28, 20, 14, 0.86);
+  box-shadow: 0 0 24px 6px rgba(255, 100, 20, 0.35), 0 6px 14px rgba(0, 0, 0, 0.5);
+  padding: 6px 24px;
+}
+
+/* Paneles anclados a bordes de la ventana, fuera del flujo de la columna central */
+.fixed-panel {
+  position: fixed;
+  z-index: 25;
+}
+.top-right-panel {
+  top: 18px;
+  right: 18px;
+}
+.left-side-panel {
+  top: 50%;
+  left: 18px;
+  transform: translateY(-38%);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 320px;
+}
+.bottom-right-panel {
+  bottom: 18px;
+  right: 18px;
+}
+/* Header typography */
+.game-title {
+  font-size: 3rem;
+  line-height: 1;
+  text-shadow: 4px 4px 0px #000;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.game-title .highlight {
+  color: var(--text-red);
+}
+/* Turn / Status banners */
+.status-banner {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 4px solid #282828;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+}
+.round-display {
+  font-size: 1.5rem;
+  color: var(--text-yellow);
+  text-shadow: 2px 2px 0px #000;
+}
+.phase-display {
+  font-size: 1.8rem;
+  text-shadow: 2px 2px 0px #000;
+  margin-top: 4px;
+  font-weight: bold;
+}
+.timer-display {
+  min-height: 1.5rem;
+  margin-top: 4px;
+  color: var(--text-yellow);
+  font-size: 1.35rem;
+  text-shadow: 2px 2px 0px #000;
+}
+/* Player stats row */
+.players-dashboard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+}
+.player-panel {
+  width: 210px;
+  padding: 14px;
+  text-align: center;
+  transition: box-shadow 0.2s, background-color 0.2s;
+}
+.player-panel.active {
+  background-color: rgba(45, 32, 20, 0.92);
+  box-shadow: 0 0 16px 4px rgba(255, 255, 85, 0.55), 0 6px 14px rgba(0, 0, 0, 0.5);
+}
+.p1-panel .player-name {
+  color: var(--text-red);
+  font-size: 1.6rem;
+  text-shadow: 2px 2px 0px #000;
+}
+.p2-panel .player-name {
+  color: var(--text-blue);
+  font-size: 1.6rem;
+  text-shadow: 2px 2px 0px #000;
+}
+.player-hearts {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 6px 0;
+}
+.heart {
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+.heart.full {
+  background-image: var(--heart-full);
+}
+.heart.empty {
+  background-image: var(--heart-empty);
+  animation: heartShake 0.4s;
+}
+/* Cosmético de tienda: recolorea solo el relleno del corazón (contorno incluido
+   en la máscara), sin cambiar tamaño, forma ni dar ninguna ventaja de juego. */
+.heart.full.heart-custom-color {
+  background-image: none;
+  background-color: var(--heart-color, #ff2222);
+  -webkit-mask-image: var(--heart-mask);
+  mask-image: var(--heart-mask);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.tnt-status {
+  font-size: 1.2rem;
+  color: #bfbfbf;
+  text-shadow: 1px 1px 0px #000;
+}
+/* STATIC Board Area - No movements, no shakes, no rotations */
+.board-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.board-frame {
+  background-color: #221a12; /* Rich dark wooden board edge */
+  border: 6px solid #14100b;
+  padding: 8px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+}
+.static-board {
+  display: grid;
+  /* Columns and rows dynamically declared in JS using CSS variable --grid-size */
+  grid-template-columns: repeat(var(--grid-size, 3), var(--cell-size, 56px));
+  grid-template-rows: repeat(var(--grid-size, 3), var(--cell-size, 56px));
+  gap: 4px;
+  background-color: #110d09;
+}
+/* Individual grid cells (raised dirt blocks) */
+.cell {
+  width: 100%;
+  height: 100%;
+  background-image: var(--dirt-tile);
+  background-size: cover;
+  image-rendering: pixelated;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  position: relative;
+  box-shadow: 
+    inset 2px 2px 0 rgba(255,255,255,0.15), 
+    inset -2px -2px 0 rgba(0,0,0,0.45),
+    0 3px 6px rgba(0,0,0,0.3);
+  transition: transform 0.1s, filter 0.1s;
+}
+.cell:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
+.cell:active {
+  filter: brightness(0.9);
+  transform: scale(0.98);
+}
+/* Placed TNT state overlay (only visible when placing) - shown on a dirt block */
+.cell.has-tnt {
+  position: relative;
+  box-shadow: 
+    inset 2px 2px 0 rgba(255,255,255,0.15), 
+    inset -2px -2px 0 rgba(0,0,0,0.45),
+    0 3px 6px rgba(0,0,0,0.3);
+}
+.cell.has-tnt::after {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 70%;
+  height: 70%;
+  background-image: var(--tnt-tile);
+  background-size: contain;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+/* Exploded crater state */
+.cell.exploded {
+  background-image: var(--crater-tile);
+  cursor: default;
+}
+/* Safe revealed state (dark smooth brown matching frame) */
+.cell.safe {
+  background-color: #221a12;
+  background-image: none;
+  filter: none;
+  cursor: default;
+  box-shadow: 
+    inset 2px 2px 0 rgba(0,0,0,0.25), 
+    inset -2px -2px 0 rgba(255,255,255,0.1);
+}
+.cell.safe::after {
+  display: none;
+}
+/* Rock obstacle state */
+.cell.rock {
+  cursor: default;
+}
+.cell.rock::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  background:
+    linear-gradient(135deg, transparent 0 12%, #8b8b8b 12% 38%, transparent 38%),
+    linear-gradient(45deg, transparent 0 18%, #5f5f5f 18% 56%, transparent 56%),
+    linear-gradient(150deg, #b8b8b8 0 30%, #787878 30% 70%, #454545 70%);
+  clip-path: polygon(12% 72%, 22% 28%, 46% 10%, 76% 22%, 92% 58%, 78% 88%, 34% 92%);
+  image-rendering: pixelated;
+  box-shadow: 3px 4px 0 rgba(0,0,0,0.35);
+}
+.cell.rock:hover {
+  filter: none;
+  transform: none;
+}
+/* Blocked/Unclickable cell styling */
+.cell.disabled {
+  cursor: default;
+  pointer-events: none;
+}
+/* Controls Panel */
+.controls-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+}
+/* Fila dentro del panel de controles: agrupa botones relacionados para que
+   la reorganización quede clara (una fila = un grupo de acciones). Las filas
+   sin ningún botón visible no ocupan espacio. */
+.controls-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+}
+/* Botones de "volver / abandonar / cancelar": mismo estilo en todo el juego
+   para que sea siempre reconocible como una acción de retroceso. */
+.mc-button.back-btn {
+  background-color: #7a2d2d;
+  border-color: #3e1717;
+  border-top-color: #a84b4b;
+  border-left-color: #a84b4b;
+}
+.mc-button.back-btn:hover:not(.disabled) {
+  color: var(--text-yellow);
+  background-color: #8f3636;
+  border-top-color: #c25f5f;
+  border-left-color: #c25f5f;
+}
+.mc-button.back-btn:active:not(.disabled) {
+  border-top-color: #3e1717;
+  border-left-color: #3e1717;
+}
+/* Minecraft Button Style */
+.mc-button {
+  font-family: 'VT323', monospace;
+  font-size: 1.6rem;
+  color: #e0e0e0;
+  background-color: #a8a8a8;
+  border: 4px solid #5e5e5e;
+  border-top-color: #dedede;
+  border-left-color: #dedede;
+  cursor: pointer;
+  padding: 6px 20px;
+  outline: none;
+  box-shadow: 0 4px 0 #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 2px 2px 0px #373737;
+  transition: color 0.1s, background-color 0.1s;
+}
+.mc-button:hover:not(.disabled) {
+  color: var(--text-yellow);
+  background-color: #b0b0b0;
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+}
+.mc-button:active:not(.disabled) {
+  border-color: #dedede;
+  border-top-color: #5e5e5e;
+  border-left-color: #5e5e5e;
+  box-shadow: 0 1px 0 #000;
+  transform: translateY(3px);
+  text-shadow: 1px 1px 0px #373737;
+}
+.mc-button.disabled {
+  background-color: #555555 !important;
+  color: #888888 !important;
+  border-color: #3e3e3e !important;
+  box-shadow: 0 4px 0 #000 !important;
+  cursor: default;
+  pointer-events: none;
+}
+.game-footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+/* ============ Columna izquierda (Modo de juego / Buscador de salas / Modo libre) ============ */
+.left-col-box {
+  width: 100%;
+  padding: 10px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.free-history-box {
+  flex-direction: row;
+  justify-content: center;
+}
+.wood-panel-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  font-size: 1.15rem;
+  color: var(--text-white);
+  text-shadow: 1px 1px 0 #000;
+  text-align: center;
+}
+.wood-panel-header .panel-icon-left {
+  position: absolute;
+  left: 0;
+}
+.wood-panel-header .panel-icon-right {
+  position: absolute;
+  right: 0;
+}
+.online-code-label {
+  width: auto;
+  text-align: center;
+}
+.online-room-idle-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+/* ============ Panel de cuenta (arriba derecha) ============ */
+.account-panel {
+  width: 260px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.account-panel-heading {
+  text-align: center;
+  font-size: 1.3rem;
+  color: var(--text-white);
+  text-shadow: 1px 1px 0 #000;
+}
+.auth-forms, .auth-form, .profile-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.auth-field-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.auth-field-icon {
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.auth-field-row input {
+  flex: 1;
+  min-width: 0;
+}
+.account-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.account-actions-row .mc-button.mini-btn {
+  padding: 4px 8px;
+  font-size: 1rem;
+}
+.profile-chip {
+  align-items: center;
+}
+
+/* ============ Panel de sonido (abajo derecha) ============ */
+.sound-panel {
+  display: flex;
+  gap: 16px;
+  padding: 12px 16px;
+}
+.sound-toggle-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.sound-icon {
+  font-size: 1.4rem;
+}
+.mc-button.sound-on-btn {
+  background-color: #5c8033 !important;
+  border-color: #4a6829 !important;
+  border-top-color: #8bbd52 !important;
+  border-left-color: #8bbd52 !important;
+  color: var(--text-yellow) !important;
+  padding: 2px 14px;
+}
+.mc-button.sound-on-btn.muted {
+  background-color: #a8a8a8 !important;
+  border-color: #5e5e5e !important;
+  border-top-color: #dedede !important;
+  border-left-color: #dedede !important;
+  color: #e0e0e0 !important;
+}
+
+/* ============ Fila central: Jugador 1 - Tablero - Jugador 2 ============ */
+.center-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+}
+.player-account-name {
+  font-size: 1rem;
+  color: var(--text-yellow);
+  text-shadow: 1px 1px 0 #000;
+  min-height: 1.1em;
+}
+.mc-button.mini-btn {
+  font-size: 1.1rem;
+  padding: 4px 12px;
+}
+.rules-tip {
+  font-size: 1.2rem;
+  color: #a0a0a0;
+  text-shadow: 1px 1px 0px #000;
+  text-align: center;
+}
+/* Pig styles removed */
+/* Twinkling particle */
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  z-index: 10;
+  image-rendering: pixelated;
+  animation: blast 0.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+/* Audio Modal Overlay */
+.audio-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(9, 11, 16, 0.96);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+.audio-modal.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.modal-content {
+  background-color: #2b2b2b;
+  border: 6px solid #5e5e5e;
+  border-top-color: #dedede;
+  border-left-color: #dedede;
+  padding: 30px 40px;
+  text-align: center;
+  max-width: 450px;
+  box-shadow: 0 10px 0 #000, 0 25px 50px rgba(0,0,0,0.8);
+}
+.modal-content h2 {
+  font-size: 2.8rem;
+  color: var(--text-yellow);
+  text-shadow: 3px 3px 0 #000;
+  margin-bottom: 15px;
+}
+.modal-content p {
+  font-size: 1.4rem;
+  color: #dedede;
+  text-shadow: 2px 2px 0 #000;
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+.modal-btn {
+  font-size: 1.8rem;
+  padding: 8px 30px;
+  width: 100%;
+}
+/* Heart breaking animation */
+@keyframes heartShake {
+  0% { transform: translateY(0) scale(1); }
+  25% { transform: translateY(-6px) scale(1.2) rotate(-10deg); }
+  50% { transform: translateY(0) scale(1.1) rotate(10deg); }
+  75% { transform: translateY(-2px) scale(1.05) rotate(-5deg); }
+  100% { transform: translateY(0) scale(1) rotate(0); }
+}
+/* Particle Blast */
+@keyframes blast {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Timer Display */
+.timer-display {
+  font-size: 1.6rem;
+  color: var(--text-white);
+  text-shadow: 2px 2px 0px #000;
+  margin-top: 4px;
+}
+.cell.has-tnt.tnt-fade::after {
+  animation: fadeTnt 2s forwards;
+}
+@keyframes fadeTnt {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Fila READY: panel de configuración a la izquierda, START DUEL a la derecha */
+.ready-panel-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+.ready-panel-row .setup-panel {
+  flex: 1;
+  min-width: 0;
+}
+.ready-panel-row #primaryActionsRow {
+  width: auto;
+  flex-shrink: 0;
+}
+/* Game Setup Styles */
+.setup-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  border: 4px solid #4a4a4a;
+  padding: 10px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7);
+  align-items: flex-start;
+  justify-content: center;
+}
+.setup-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 12px;
+  width: 100%;
+}
+.setup-label {
+  font-size: 1.25rem;
+  color: var(--text-white);
+  text-shadow: 1px 1px 0px #000;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.mc-button.active {
+  color: var(--text-yellow) !important;
+  background-color: #5c8033 !important;
+  border-color: #4a6829 !important;
+  border-top-color: #8bbd52 !important;
+  border-left-color: #8bbd52 !important;
+  text-shadow: 2px 2px 0px #1e2d10 !important;
+  box-shadow: 0 4px 0 #000 !important;
+}
+
+/* Name inputs (setup panel) */
+.mc-input {
+  padding: 6px 8px;
+  border: 2px solid #333;
+  background: #111;
+  color: #eee;
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  width: 140px;
+}
+.mc-input::placeholder {
+  color: #888;
+}
+
+/* Match History Modal */
+.history-modal-content {
+  max-width: 600px;
+  width: 90%;
+}
+.history-list {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  text-align: left;
+}
+.history-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  padding: 10px 8px;
+  border-bottom: 2px solid #444;
+  font-size: 1.1rem;
+  color: #dedede;
+}
+.history-row:last-child {
+  border-bottom: none;
+}
+.history-players {
+  color: var(--text-white);
+  font-weight: bold;
+  width: 100%;
+}
+.history-winner {
+  color: var(--text-yellow);
+}
+.history-date {
+  color: #999;
+  margin-left: auto;
+}
+.history-status {
+  text-align: center;
+  padding: 20px;
+  color: #ccc;
+  font-size: 1.2rem;
+}
+
+/* Auth area (header) */
+.auth-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.auth-forms {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.auth-form {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.auth-form input {
+  padding: 6px 8px;
+  border: 2px solid #333;
+  background: #111;
+  color: #eee;
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  width: 100px;
+}
+.auth-status {
+  color: var(--text-red);
+  font-size: 1rem;
+  margin-left: 6px;
+}
+.profile-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.profile-avatar-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #5e5e5e;
+}
+.profile-chip-name {
+  font-size: 1.2rem;
+  color: var(--text-white);
+  text-shadow: 1px 1px 0 #000;
+}
+.profile-chip-coins {
+  font-size: 1.1rem;
+  color: var(--text-yellow);
+  text-shadow: 1px 1px 0 #000;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.coin-icon {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+  vertical-align: middle;
+}
+
+/* Profile Modal */
+.profile-modal-content {
+  max-width: 500px;
+  width: 90%;
+}
+.profile-modal-body {
+  display: flex;
+  gap: 20px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.profile-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.profile-avatar-large {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #5e5e5e;
+}
+.profile-upload-label {
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: center;
+}
+.profile-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.profile-field-label {
+  font-size: 1.1rem;
+  color: var(--text-white);
+}
+.profile-field-input {
+  width: 100%;
+  font-size: 1.1rem;
+  resize: vertical;
+}
+.profile-status {
+  min-height: 1.4em;
+  font-size: 1rem;
+  color: var(--text-yellow);
+}
+.profile-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 8px;
+  font-size: 1.1rem;
+  color: #dedede;
+}
+
+/* Shop Modal */
+.shop-modal-content {
+  max-width: 550px;
+  width: 90%;
+}
+.shop-subtitle {
+  font-size: 1.1rem !important;
+  color: #aaa !important;
+}
+.shop-list {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  text-align: left;
+}
+.shop-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 8px;
+  border-bottom: 2px solid #444;
+}
+.shop-item:last-child {
+  border-bottom: none;
+}
+.shop-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  flex-shrink: 0;
+}
+.shop-label {
+  flex: 1;
+  font-size: 1.2rem;
+  color: var(--text-white);
+}
+.shop-price {
+  font-size: 1.1rem;
+  color: var(--text-yellow);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Panel de sala online */
+.online-room-panel {
+  flex-direction: column;
+  gap: 8px;
+}
+.online-room-idle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.online-or-label {
+  font-size: 1.1rem;
+  color: var(--text-white);
+  text-shadow: 1px 1px 0px #000;
+}
+.online-code-input {
+  width: 85px;
+  text-align: center;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.online-room-code {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+.online-room-code-value {
+  font-size: 2rem;
+  letter-spacing: 6px;
+  color: var(--text-yellow);
+  text-shadow: 2px 2px 0 #000;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 14px;
+  border: 2px solid #5e5e5e;
+}
+.online-status {
+  font-size: 1.1rem;
+  color: var(--text-red);
+  min-height: 1.4em;
+  text-align: center;
+}

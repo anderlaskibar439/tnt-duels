@@ -1,0 +1,10 @@
+# Desactiva la cache del navegador para los archivos del juego mientras está en
+# desarrollo, para que los cambios se vean siempre al recargar sin necesidad de
+# recordar subir manualmente un parámetro de versión (?v=N) en cada <script>/<link>.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|js|css)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+  </FilesMatch>
+</IfModule>

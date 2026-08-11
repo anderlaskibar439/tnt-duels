@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft TNT Duels 1v1</title>
+  <meta name="description" content="Juego multijugador 1vs1 de colocación estratégica de TNT con rondas progresivas, tablero estático y cerdos decorativos en 2D.">
+  <!-- Retro Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body class="day-theme">
+  <!-- Detailed Grass Field Background (No sky) -->
+  <div class="grass-field" id="grassField">
+    <!-- Campo de cesped decorativo de fondo -->
+  </div>
+  <!-- Cuenta: fija arriba a la derecha -->
+  <div class="wood-panel fixed-panel top-right-panel account-panel" id="authArea">
+    <div class="account-panel-heading">CUENTA</div>
+    <div id="profileChip" class="profile-chip" style="display:none">
+      <img id="profileChipAvatar" class="profile-avatar-thumb" src="" alt="Avatar">
+      <span id="profileChipName" class="profile-chip-name"></span>
+      <span id="profileChipCoins" class="profile-chip-coins"></span>
+      <div class="account-actions-row">
+        <button class="mc-button mini-btn" id="openProfileBtn">PERFIL</button>
+        <button class="mc-button mini-btn" id="openShopBtn">TIENDA</button>
+        <button class="mc-button mini-btn" id="logoutBtn">SALIR</button>
+      </div>
+    </div>
+    <div id="authForms" class="auth-forms">
+      <form id="loginForm" class="auth-form">
+        <div class="auth-field-row">
+          <span class="auth-field-icon">👤</span>
+          <input type="text" id="loginUser" placeholder="usuario" required />
+        </div>
+        <div class="auth-field-row">
+          <span class="auth-field-icon">🔒</span>
+          <input type="password" id="loginPass" placeholder="contraseña" required />
+        </div>
+        <div class="account-actions-row">
+          <button class="mc-button mini-btn" type="submit">Entrar</button>
+          <button class="mc-button mini-btn" type="button" id="showRegisterBtn">Registrar</button>
+        </div>
+      </form>
+      <form id="registerForm" class="auth-form" style="display:none">
+        <div class="auth-field-row">
+          <span class="auth-field-icon">👤</span>
+          <input type="text" id="regUser" placeholder="usuario" required />
+        </div>
+        <div class="auth-field-row">
+          <span class="auth-field-icon">🔒</span>
+          <input type="password" id="regPass" placeholder="contraseña" required />
+        </div>
+        <div class="account-actions-row">
+          <button class="mc-button mini-btn" type="submit">Registrar</button>
+          <button class="mc-button mini-btn" type="button" id="showLoginBtn">Volver</button>
+        </div>
+      </form>
+      <p class="auth-status" id="authStatusMsg"></p>
+    </div>
+  </div>
+
+  <!-- Columna izquierda: fija, apilada verticalmente -->
+  <div class="fixed-panel left-side-panel">
+    <div class="wood-panel left-col-box" id="modeBox">
+      <div class="wood-panel-header">
+        <span class="panel-icon-left">🌐</span>
+        MODO DE JUEGO
+        <span class="panel-icon-right">👤</span>
+      </div>
+      <div class="setup-row">
+        <button class="mc-button mini-btn active" id="modeOnlineBtn" type="button">
+          <span>ONLINE 1vs1</span>
+        </button>
+        <button class="mc-button mini-btn" id="modeSoloBtn" type="button">
+          <span>SOLITARIO</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="wood-panel left-col-box" id="difficultyBox" style="display: none;">
+      <div class="wood-panel-header">DIFICULTAD DEL BOT</div>
+      <div class="setup-row" id="difficultyRow">
+        <button class="mc-button mini-btn active" id="diffEasyBtn" type="button">
+          <span>FÁCIL</span>
+        </button>
+        <button class="mc-button mini-btn" id="diffMediumBtn" type="button">
+          <span>MEDIO</span>
+        </button>
+        <button class="mc-button mini-btn" id="diffHardBtn" type="button">
+          <span>DIFÍCIL</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="wood-panel left-col-box online-room-panel" id="onlineRoomPanel" style="display: none;">
+      <div class="wood-panel-header">BUSCADOR DE SALAS</div>
+      <div class="online-room-idle" id="onlineRoomIdle">
+        <span class="setup-label online-code-label">CÓDIGO</span>
+        <div class="online-room-idle-row">
+          <button class="mc-button mini-btn" id="createRoomBtn" type="button">
+            <span>CREAR SALA</span>
+          </button>
+          <input type="text" id="joinCodeInput" class="mc-input online-code-input" placeholder="CÓDIGO" maxlength="6">
+          <button class="mc-button mini-btn" id="joinRoomBtn" type="button">
+            <span>UNIRSE</span>
+          </button>
+        </div>
+      </div>
+      <div class="online-room-code" id="onlineRoomCodeDisplay" style="display:none">
+        <span class="setup-label">CÓDIGO DE SALA:</span>
+        <span class="online-room-code-value" id="onlineRoomCodeValue"></span>
+        <button class="mc-button mini-btn back-btn" id="cancelRoomBtn" type="button">
+          <span>CANCELAR</span>
+        </button>
+      </div>
+      <p class="online-status" id="onlineStatusMsg"></p>
+    </div>
+
+    <div class="wood-panel left-col-box free-history-box" id="secondaryActionsRow" style="display: none;">
+      <button class="mc-button mini-btn" id="freeModeBtn">
+        <span>MODO LIBRE</span>
+      </button>
+      <button class="mc-button mini-btn" id="historyBtn">
+        <span>HISTORIAL</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Sonido: fijo abajo a la derecha -->
+  <div class="wood-panel fixed-panel bottom-right-panel sound-panel volume-settings">
+    <div class="sound-toggle-col">
+      <span class="sound-icon">🔊</span>
+      <button class="mc-button mini-btn sound-on-btn" id="soundToggle">
+        <span>ON</span>
+      </button>
+    </div>
+    <div class="sound-toggle-col">
+      <span class="sound-icon">🎵</span>
+      <button class="mc-button mini-btn sound-on-btn" id="musicToggle">
+        <span>ON</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="game-wrapper">
+    <!-- Título -->
+    <div class="wood-panel-title">
+      <h1 class="game-title">TNT <span class="highlight">DUELS</span></h1>
+    </div>
+    <!-- Turn and Status Banner -->
+    <div class="status-banner" id="statusBanner">
+      <div class="round-display" id="roundDisplay">RONDA 1 (Tablero: 3x3)</div>
+      <div class="phase-display" id="phaseDisplay">Cargando juego...</div>
+      <div class="timer-display" id="timerDisplay"></div>
+    </div>
+    <!-- Fila central: Jugador 1 - Tablero - Jugador 2 -->
+    <div class="center-row">
+      <section class="wood-panel player-panel p1-panel active" id="p1Panel" aria-label="Jugador 1">
+        <div class="player-name">JUGADOR 1</div>
+        <div class="player-hearts" id="p1Hearts">
+          <!-- Dynamically filled with hearts -->
+        </div>
+        <div class="tnt-status" id="p1TntStatus">TNTs restantes: 1</div>
+        <div class="player-account-name" id="p1AccountName"></div>
+      </section>
+      <!-- Static Game Board Area -->
+      <main class="board-area">
+        <div class="board-frame">
+          <div class="static-board" id="staticBoard">
+            <!-- Filled dynamically by JavaScript based on current round size -->
+          </div>
+        </div>
+      </main>
+      <section class="wood-panel player-panel p2-panel" id="p2Panel" aria-label="Jugador 2">
+        <div class="player-name">JUGADOR 2</div>
+        <div class="player-hearts" id="p2Hearts">
+          <!-- Dynamically filled with hearts -->
+        </div>
+        <div class="tnt-status" id="p2TntStatus">TNTs restantes: 1</div>
+        <div class="player-account-name" id="p2AccountName"></div>
+      </section>
+    </div>
+    <!-- Controls Panel -->
+    <section class="controls-panel" aria-label="Controles del juego">
+      <!-- Acción principal: arrancar la partida configurada en la columna izquierda -->
+      <div class="controls-row" id="primaryActionsRow" style="display: none;">
+        <button class="mc-button" id="startDuelBtn">
+          <span>START DUEL</span>
+        </button>
+      </div>
+
+      <!-- Controles durante una partida en curso -->
+      <div class="controls-row" id="matchControlsRow" style="display: none;">
+        <button class="mc-button" id="endRoundBtn" style="display: none;">
+          <span>FINALIZAR RONDA</span>
+        </button>
+        <button class="mc-button back-btn" id="leaveMatchBtn">
+          <span>ABANDONAR PARTIDA</span>
+        </button>
+      </div>
+
+      <!-- Selector de tamaño de tablero en Modo Libre -->
+      <div class="controls-row" id="freeSizeRow" style="display: none;">
+        <button class="mc-button mini-btn" id="freeSize3Btn">
+          <span>3x3</span>
+        </button>
+        <button class="mc-button mini-btn" id="freeSize4Btn">
+          <span>4x4</span>
+        </button>
+        <button class="mc-button mini-btn" id="freeSize5Btn">
+          <span>5x5</span>
+        </button>
+        <button class="mc-button mini-btn" id="freeSize6Btn">
+          <span>6x6</span>
+        </button>
+        <button class="mc-button mini-btn" id="freeSize7Btn">
+          <span>7x7</span>
+        </button>
+        <button class="mc-button mini-btn" id="freeSize8Btn">
+          <span>8x8</span>
+        </button>
+        <button class="mc-button mini-btn" id="freeSize9Btn">
+          <span>9x9</span>
+        </button>
+      </div>
+      <div class="controls-row" id="exitFreeModeRow" style="display: none;">
+        <button class="mc-button back-btn" id="exitFreeModeBtn">
+          <span>VOLVER AL MENÚ</span>
+        </button>
+      </div>
+
+      <!-- Fin de partida -->
+      <div class="controls-row" id="gameOverRow" style="display: none;">
+        <button class="mc-button" id="restartGameBtn">
+          <span>NUEVA PARTIDA</span>
+        </button>
+        <button class="mc-button back-btn" id="menuBtn">
+          <span>VOLVER AL MENÚ</span>
+        </button>
+      </div>
+    </section>
+    <!-- Info Panel -->
+    <footer class="game-footer">
+      <p class="rules-tip" id="rulesTip">Fase de Colocación: J1 clica en el tablero para colocar su TNT.</p>
+    </footer>
+  </div>
+
+  <!-- Audio Policy Compliance Overlay Modal -->
+  <div class="audio-modal" id="audioModal" style="display: none;">
+    <div class="modal-content">
+      <h2>TNT DUELS 1vs1</h2>
+      <p>Juego de estrategia por rondas de Minecraft. Coloca TNTs en secreto y haz caer en tu trampa al rival.</p>
+      <button class="mc-button modal-btn" id="startAudioBtn">
+        <span>¡INICIAR DUELO!</span>
+      </button>
+    </div>
+  </div>
+  <!-- Match History Modal -->
+  <div class="audio-modal hide" id="historyModal">
+    <div class="modal-content history-modal-content">
+      <h2>HISTORIAL DE PARTIDAS</h2>
+      <ul class="history-list" id="historyList"></ul>
+      <button class="mc-button modal-btn" id="closeHistoryBtn">CERRAR</button>
+    </div>
+  </div>
+  <!-- Profile Modal -->
+  <div class="audio-modal hide" id="profileModal">
+    <div class="modal-content profile-modal-content">
+      <h2>MI PERFIL</h2>
+      <div class="profile-modal-body">
+        <div class="profile-avatar-section">
+          <img id="profileModalAvatar" class="profile-avatar-large" src="" alt="Avatar">
+          <label class="mc-button mini-btn profile-upload-label">
+            <span>CAMBIAR FOTO</span>
+            <input type="file" id="avatarFileInput" accept="image/png,image/jpeg,image/webp" style="display:none">
+          </label>
+        </div>
+        <div class="profile-fields">
+          <label class="profile-field-label" for="profileUsernameInput">Nombre de usuario</label>
+          <input type="text" id="profileUsernameInput" class="mc-input profile-field-input" maxlength="20">
+
+          <label class="profile-field-label" for="profileBioInput">Descripción</label>
+          <textarea id="profileBioInput" class="mc-input profile-field-input" maxlength="200" rows="3"></textarea>
+
+          <button class="mc-button mini-btn" id="saveProfileBtn">GUARDAR CAMBIOS</button>
+          <p class="profile-status" id="profileStatusMsg"></p>
+
+          <div class="profile-stats">
+            <span id="profileStatWins"></span>
+            <span id="profileStatLosses"></span>
+            <span id="profileStatPlayed"></span>
+            <span id="profileStatCoins"></span>
+          </div>
+        </div>
+      </div>
+      <button class="mc-button modal-btn" id="closeProfileBtn">CERRAR</button>
+    </div>
+  </div>
+  <!-- Shop Modal -->
+  <div class="audio-modal hide" id="shopModal">
+    <div class="modal-content shop-modal-content">
+      <h2>TIENDA DE CORAZONES</h2>
+      <p class="shop-subtitle">Cosméticos solo visuales: no dan ninguna ventaja en la partida.</p>
+      <ul class="shop-list" id="shopList"></ul>
+      <button class="mc-button modal-btn" id="closeShopBtn">CERRAR</button>
+    </div>
+  </div>
+  <!-- Cliente de Socket.IO servido por el servidor Node (server.js). Si ese
+       servidor no está corriendo, esta etiqueta falla en silencio y el modo
+       online queda deshabilitado, pero el resto del juego sigue funcionando. -->
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script src="script.js?v=3"></script>
+</body>
+</html>

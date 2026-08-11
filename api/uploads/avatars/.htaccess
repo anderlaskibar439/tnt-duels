@@ -1,0 +1,5 @@
+# Defensa en profundidad: aunque solo se guardan .jpg/.png/.webp,
+# esto asegura que ningún archivo en esta carpeta se ejecute nunca como script.
+<FilesMatch "\.(php|phtml|php3|php4|php5|pht|phar)$">
+  Require all denied
+</FilesMatch>
