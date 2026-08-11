@@ -9,6 +9,12 @@
 // usan solo si la variable de entorno correspondiente no existe.
 
 define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_PORT', getenv('DB_PORT') ?: '');
 define('DB_NAME', getenv('DB_NAME') ?: 'tnt_duels');
 define('DB_USER', getenv('DB_USER') ?: 'root');
 define('DB_PASS', getenv('DB_PASS') ?: '');
+
+// Algunos proveedores en la nube (p.ej. Aiven) exigen TLS con un
+// certificado CA propio para conectar. DB_SSL_CA debe ser una ruta de
+// archivo absoluta al .pem; se deja vacío para conexiones locales normales.
+define('DB_SSL_CA', getenv('DB_SSL_CA') ?: '');

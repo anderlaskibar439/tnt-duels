@@ -4,12 +4,21 @@ require_once __DIR__ . '/config.php';
 function getDbConnection(): PDO {
     static $pdo = null;
     if ($pdo === null) {
-        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
-        $pdo = new PDO($dsn, DB_USER, DB_PASS, [
+        $port = defined('DB_PORT') && DB_PORT ? ';port=' . DB_PORT : '';
+        $dsn = 'mysql:host=' . DB_HOST . $port . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+
+        $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES => false,
-        ]);
+        ];
+        // Algunos proveedores en la nube (p.ej. Aiven) exigen TLS con CA propia.
+        if (defined('DB_SSL_CA') && DB_SSL_CA) {
+            $options[PDO::MYSQL_ATTR_SSL_CA] = DB_SSL_CA;
+            $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
+        }
+
+        $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
     }
     return $pdo;
 }
